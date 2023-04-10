@@ -21,6 +21,7 @@ export default function apiView() {
   if (showView == "Select Api View") {
     return (
       <main>
+        <a href="/">Index Page</a>
         Api Viewer
         <select onChange={(event) => SelectView(event)}>
           <option value="Select Api View">Select Api View</option>
@@ -32,6 +33,7 @@ export default function apiView() {
   } else if (showView == "Team") {
     return (
       <main>
+        <a href="/">Index Page</a>
         Api Viewer
         <select onChange={(event) => SelectView(event)}>
           <option value="Select Api View">Select Api View</option>
@@ -44,6 +46,7 @@ export default function apiView() {
   } else if (showView == "Event") {
     return (
       <main>
+        <a href="/">Index Page</a>
         Api Viewer
         <select onChange={(event) => SelectView(event)}>
           <option value="Select Api View">Select Api View</option>
