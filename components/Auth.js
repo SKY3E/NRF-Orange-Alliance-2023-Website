@@ -32,13 +32,10 @@ function SignInButton() {
   };
 
   return ( 
-    <section className="border-4 rounded-lg p-2 px-28 bg-red-400">
-      <div className="text-slate-800">
-        <h2 className="text-xl font-bold">Sign-in</h2>
-        <p className="font-semibold">Access your personalized calendar</p>
-      </div>
-      <button className="h-16 w-56 flex items-stretch space-x-2 border-4 rounded p-2 bg-white hover:bg-gray-50 mt-2" onClick={signInWithGoogle}>
-        <img src={'/google.png'} /> <div className="text-slate-800 m-auto">Sign in with Google</div>
+    <section className="">
+      <button className="" onClick={signInWithGoogle}>
+        <img src={'/google.png'} />
+        <div className="">Sign in with Google</div>
       </button>
     </section>
   );
@@ -47,12 +44,8 @@ function SignInButton() {
 // Create Sign Out Page
 function SignOutButton() {
   return(
-    <section className="border-4 rounded-lg p-2 px-28 bg-red-400 flex flex-col">
-      <div className="text-slate-800">
-        <h2 className="text-xl font-bold">Sign-out</h2>
-        <p className="font-semibold">Sign-in to another account</p>
-      </div>
-      <button className="w-56 border-4 rounded p-2 mt-2 bg-white hover:bg-gray-100 text-slate-800" onClick={() => auth.signOut()}>Sign out</button>
+    <section className="">
+      <button className="" onClick={() => auth.signOut()}>Sign out</button>
     </section>
   );
 }
@@ -126,21 +119,18 @@ function UsernameForm() {
 
   return (
     !username && (
-      <section className="border-4 rounded-lg p-2 px-28 bg-red-400 flex flex-col">
-        <h2 className="text-slate-800 text-xl font-bold">Create Personal Profile</h2>
-        <p className="text-slate-800 text-xl font-semibold">Choose Username</p>
-        <hr className="border-t-4 border-dashed"/>
-        <form className="mt-2 flex space-x-4" onSubmit={onSubmit}>
+      <section className="">
+        <form className="" onSubmit={onSubmit}>
           <div>
-            <input className="border-4 rounded p-2 w-full focus:outline-none focus:border-slate-800 focus:ring-slate-800 focus:ring-1" name="username" placeholder="username" value={formValue} onChange={onChange} />
+            <input className="" name="username" placeholder="username" value={formValue} onChange={onChange} />
             <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
-            <button className="w-56 border-4 rounded p-2 bg-white hover:bg-gray-100 text-slate-800" type="submit" disabled={!isValid}>
+            <button className="" type="submit" disabled={!isValid}>
               Choose
             </button>
           </div>
           <div>
-            <h3 className="text-slate-800 text-xl font-semibold">Debug State</h3>
-            <div className="text-slate-800">
+            <h3 className="">Debug State</h3>
+            <div className="">
               Username: {formValue}
               <br />
               Loading: {loading.toString()}
@@ -157,12 +147,12 @@ function UsernameForm() {
 // Create Username Message which displays username validity
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p className="text-slate-800">Checking...</p>;
+    return <p className="">Checking...</p>;
   } else if (isValid) {
-    return <p className="text-slate-800">{username} is available!</p>;
+    return <p className="">{username} is available!</p>;
   } else if (username && !isValid) {
-    return <p className="text-slate-800">That username is taken!</p>;
+    return <p className="">That username is taken!</p>;
   } else {
-    return <p className="text-slate-800">Waiting...</p>;
+    return <p className="">Waiting...</p>;
   }
 }
