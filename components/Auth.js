@@ -33,8 +33,8 @@ function SignInButton() {
 
   return ( 
     <section className="">
-      <button className="" onClick={signInWithGoogle}>
-        <img src={'/google.png'} />
+      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center" onClick={signInWithGoogle}>
+        <img className="h-6 w-6 mx-4" src={'/google.png'} />
         <div className="">Sign in with Google</div>
       </button>
     </section>
@@ -45,7 +45,7 @@ function SignInButton() {
 function SignOutButton() {
   return(
     <section className="">
-      <button className="" onClick={() => auth.signOut()}>Sign out</button>
+      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white" onClick={() => auth.signOut()}>Sign out</button>
     </section>
   );
 }
@@ -122,21 +122,11 @@ function UsernameForm() {
       <section className="">
         <form className="" onSubmit={onSubmit}>
           <div>
-            <input className="" name="username" placeholder="username" value={formValue} onChange={onChange} />
+            <input className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-56 pl-2" name="username" placeholder="username" value={formValue} onChange={onChange} />
             <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
-            <button className="" type="submit" disabled={!isValid}>
+            <button className="bg-green-600 hover:bg-opacity-50 rounded h-8 w-56 text-white" type="submit" disabled={!isValid}>
               Choose
             </button>
-          </div>
-          <div>
-            <h3 className="">Debug State</h3>
-            <div className="">
-              Username: {formValue}
-              <br />
-              Loading: {loading.toString()}
-              <br />
-              Username Valid: {isValid.toString()}
-            </div>
           </div>
         </form>
       </section>
@@ -147,12 +137,12 @@ function UsernameForm() {
 // Create Username Message which displays username validity
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p className="">Checking...</p>;
+    return <p className="text-white text-center">Checking...</p>;
   } else if (isValid) {
-    return <p className="">{username} is available!</p>;
+    return <p className="text-white text-center">{username} is available!</p>;
   } else if (username && !isValid) {
-    return <p className="">That username is taken!</p>;
+    return <p className="text-white text-center">That username is taken!</p>;
   } else {
-    return <p className="">Waiting...</p>;
+    return <p className="text-white text-center">Waiting...</p>;
   }
 }
