@@ -1,6 +1,10 @@
 import Auth from '../Auth';
+import { UserContext } from '../../lib/context';
+import { useContext } from 'react';
+import Link from 'next/link';
 
 export default function SideBar() {
+  const { username } = useContext(UserContext);
 
   return (
     <nav className="h-full w-60 fixed z-10 top-0 left-0 bg-blue-900 bg-opacity-50 overflow-x-hidden p-2 mt-16">
@@ -24,12 +28,14 @@ export default function SideBar() {
         </svg>
         <div>Team</div>
       </a>
-      <a className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2" href="/team">
-        <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <div>Profile</div>
-      </a>
+      <Link href={`/${username}`} legacyBehavior>
+        <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+          <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <div>Profile</div>
+        </button>
+      </Link>
     </nav>
   );
 }
