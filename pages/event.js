@@ -1,13 +1,12 @@
-// Import react form component
+// Import react form component & react components
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from "react";
 // Import Orange Alliance package
 import { API } from "@the-orange-alliance/api";
-// import react components
-import { useState, useEffect } from "react";
 
-const toa = new API("Z1OuMrnnXlfCtVvX/dbzcwAj7as0/Zo7EnmbmClPano=", "My App");
+const toa = new API(process.env.NEXT_PUBLIC_API_TOKEN, "My App");
 
-export default function EventView() {
+export default function event() {
   // Set form properties and variables
   const { register, handleSubmit, reset, formState, formState: { errors }, watch } = useForm();
   const { region, startDate, endDate } = watch();
@@ -66,9 +65,9 @@ export default function EventView() {
 
     setEvents(eventsFiltered);
   }
-  
+
   return (
-    <main>
+    <section className="mt-2 ml-64">
       <h2>Event View</h2>
       <form onSubmit={handleSubmit(getEvents)}>
         <h3>Choose region :</h3>
@@ -90,6 +89,6 @@ export default function EventView() {
           <li key={event.eventKey}>{event.eventName} / {event.startDate}</li>
         ))}
       </ul>
-    </main>
+    </section>
   );
 }
