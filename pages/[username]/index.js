@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
 export default function Profile({ user }) {
 
   return (
-    <section className="ml-64 mt-2">
+    <section className="ml-64 mt-20">
       <h1 className="text-3xl font-bold w-2/6 mb-2">Welcome back, {user.displayName}</h1>
       <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white w-1/2">
         <h2 className="text-xl">Account Info</h2>

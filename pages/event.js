@@ -67,7 +67,7 @@ export default function event() {
   }
 
   return (
-    <section className="mt-2 ml-64">
+    <section className="mt-20 ml-64">
       <h2>Event View</h2>
       <form onSubmit={handleSubmit(getEvents)}>
         <h3>Choose region :</h3>
