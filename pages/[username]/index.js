@@ -1,5 +1,6 @@
 import Auth from "@/components/Auth";
 import { getUserWithUsername } from '../../lib/firebase'; 
+import Group from "@/components/PageComponents/Group";
 import Authorization from "@/components/PageComponents/Authorization";
 
 export async function getServerSideProps(context) {
@@ -43,7 +44,10 @@ export default function Profile({ user }) {
       <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white w-1/2">
         <h2 className="text-xl">Security Info</h2>
         <hr className="border-solid border-2 mb-2 mt-1"/>
-        <Authorization />
+        <div className="flex justify-between">
+          <Group />
+          <Authorization />
+        </div>
       </article>
     </section>
   );

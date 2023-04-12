@@ -76,7 +76,7 @@ function UsernameForm() {
     const usernameDoc = doc(firestore, "usernames", formValue);
 
     const batch = writeBatch(firestore);
-    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName, group: null });
+    batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName, group: null, authorization: false });
     batch.set(usernameDoc, { uid: user.uid });
 
     await batch.commit();

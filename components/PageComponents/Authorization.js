@@ -1,66 +1,71 @@
-import { getGroupWithUsername, getUserWithUsername } from "@/lib/firebase";
-import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
-import { firestore } from '../../lib/firebase';
-// Use context & react components
+import { getAuthorizationWithUsername } from '@/lib/firebase';
 import { UserContext } from '../../lib/context';
 import { useContext, useState, useEffect } from 'react';
+import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { firestore } from '../../lib/firebase';
+
+function AuthorizationState() {
+  const { username } = useContext(UserContext);
+  const [authorizationState, setAuthorizationState] = useState(null);
+
+  useEffect(() => {
+    async function fetchAuthorizationState() {
+      try {
+        const result = await getAuthorizationWithUsername(username);
+        setAuthorizationState(result);
+      } catch (error) {
+        console.log(error);
+        setAuthorizationState(false);
+      }
+    }
+
+    fetchAuthorizationState();
+  }, [username]);
+
+  function RequestAuthorization() {
+    const docRef = doc(firestore, 'admin', 'requests');
+
+    getDoc(docRef)
+      .then((doc) => {     
+        const data = doc.data();
+        if (data.users.includes(username)) {
+          return
+        } else {
+          // If the user is not in the array, add them
+          updateDoc(docRef, {
+            users: arrayUnion(username)
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting document:', error);
+      });
+  }
+
+  if (authorizationState === true) {
+    return (
+      <p className="bg-white rounded h-8 w-56 mb-2 text-black text-center leading-8">Status : <span className="text-green-600 text-opacity-70">Allowed</span></p>
+    );
+  } else if (authorizationState === false) {
+    return (
+      <div className="flex flex-col">
+        <p className="bg-white rounded h-8 w-56 mb-2 text-black text-center leading-8">Status : <span className="text-red-600 text-opacity-70">Disallowed</span></p>
+        <button className="bg-green-600 hover:bg-opacity-50 rounded h-8 w-56" onClick={RequestAuthorization}>Request Access</button>
+      </div>
+    );
+  } else {
+    return (
+      <p>Fetching Authorization Data...</p>
+    );
+  }
+}
 
 export default function Authorization() {
-  const { user, username } = useContext(UserContext);
-  const [group, setGroup] = useState(null);
-
-  useEffect(() => {
-    getGroupWithUsername(username)
-      .then(group => setGroup(group))
-      .catch(error => console.error(error));
-  }, [username]);
-
-  function handleJoinGroup(teamNumber) {
-    const userDocRef = doc(firestore, "users", user.uid);
-    updateDoc(userDocRef, { group: teamNumber })
-      .then(setGroup(teamNumber))
-      .then(() => console.log('Document successfully updated!'))
-      .catch(error => console.error('Error updating document: ', error));
-  }
-
-  if (user) {
-    if (group === null) {
-      return <JoinGroup onJoinGroup={handleJoinGroup} />;
-    } else {
-      return <LeaveGroup />;
-    }
-  }
-}
-
-function LeaveGroup() {
-  return (
-    <div>Leave Group</div>
-  );
-}
-
-function JoinGroup({ onJoinGroup }) {
-  const { username } = useContext(UserContext);
-  const [userDoc, setUserDoc] = useState(null);
-  useEffect(() => {
-    getUserWithUsername(username)
-      .then(userDoc => setUserDoc(userDoc))
-      .catch(error => console.error(error));
-  }, [username]);
-
-  async function handleJoinGroup(event) {
-    event.preventDefault();
-    const teamNumber = event.target.elements.teamNumber.value;
-    onJoinGroup(teamNumber);
-  }
-
   return (
     <article>
-      <div className="w-56">Join Group</div>
+      <h3>Authorization Status</h3>
       <hr className="border-solid border-2 mb-2 mt-1 w-56"/>
-      <form className="flex flex-col items-start" onSubmit={handleJoinGroup}>
-        <input className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-56 pl-2 mb-2 text-black" type='number' name="teamNumber" placeholder="Team Number"></input>
-        <button type="submit" className="bg-green-600 hover:bg-opacity-50 rounded h-8 w-56">Join Group</button>
-      </form>
+      <AuthorizationState />
     </article>
   );
 }
