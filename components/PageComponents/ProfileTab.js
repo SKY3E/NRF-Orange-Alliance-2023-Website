@@ -1,7 +1,7 @@
 import { getRecentEvents } from "@/lib/orangealliance";
 import { useState, useEffect } from 'react';
 
-export default function event() {
+export default function ProfileTab() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -14,8 +14,8 @@ export default function event() {
   }, []);
 
   return (
-    <section className="ml-4 lg:ml-64 mt-20">
-      <h1>Recent Events</h1>
+    <section>
+      <h1>Profile Tab</h1>
       <ul>
         {events.map((event) => (
           <li key={event.eventKey}>{event.eventName} / {event.startDate}</li>
