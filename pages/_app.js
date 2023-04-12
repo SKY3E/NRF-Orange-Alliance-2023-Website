@@ -2,8 +2,8 @@
 import { UserContext } from '../lib/context';
 import { useUserData } from '../lib/hooks';
 // Import website components
-import SideBar from '../components/PageComponents/SideBar';
-import NavBar from '../components/PageComponents/NavBar';
+import SideBar from '../components/SiteComponents/SideBar';
+import NavBar from '../components/SiteComponents/NavBar';
 // Import Tailwind CSS Framework
 import 'tailwindcss/tailwind.css';
 // Import and create a font variable
