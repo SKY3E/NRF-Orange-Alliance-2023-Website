@@ -37,7 +37,7 @@ function SignInButton() {
 
   return ( 
     <section className="">
-      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center" onClick={signInWithGoogle}>
+      <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center" onClick={signInWithGoogle}>
         <img className="h-6 w-6 mx-4" src={'/google.png'} />
         <div className="">Sign in with Google</div>
       </button>
@@ -54,7 +54,7 @@ function SignOutButton() {
   }
   return(
     <section className="">
-      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white" onClick={SignOut}>Sign out</button>
+      <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white" onClick={SignOut}>Sign out</button>
     </section>
   );
 }
