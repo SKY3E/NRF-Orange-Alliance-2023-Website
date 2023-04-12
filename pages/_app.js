@@ -4,6 +4,7 @@ import { useUserData } from '../lib/hooks';
 // Import website components
 import SideBar from '../components/SiteComponents/SideBar';
 import NavBar from '../components/SiteComponents/NavBar';
+import Navigation from '@/components/SiteComponents/Navigation';
 // Import Tailwind CSS Framework
 import 'tailwindcss/tailwind.css';
 // Import and create a font variable
@@ -22,8 +23,7 @@ export default function App({ Component, pageProps }) {
     <main className={`${signikaNegative.variable} font-sans`}>
       {/* Set UserContext to current user data */}
       <UserContext.Provider value={ userData }>
-        <NavBar />
-        <SideBar />
+        <Navigation />
         <Component {...pageProps} />
       </UserContext.Provider>
     </main>
