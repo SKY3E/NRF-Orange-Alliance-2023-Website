@@ -8,6 +8,8 @@ import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
 // Write and get documents from firestore
 import { doc, getDoc, writeBatch } from 'firebase/firestore'
+// Router
+import { useRouter } from 'next/router'
 
 // Display sign in and sign out data and export it
 export default function Auth() {
@@ -27,8 +29,10 @@ export default function Auth() {
 
 // Create Sign In Page w/ Popup Window
 function SignInButton() {
+  const router = useRouter();
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleAuthProvider);
+    router.push('/')
   };
 
   return ( 
@@ -43,9 +47,14 @@ function SignInButton() {
 
 // Create Sign Out Page
 function SignOutButton() {
+  const router = useRouter();
+  const SignOut = () => {
+    auth.signOut();
+    router.push('/');
+  }
   return(
     <section className="">
-      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white" onClick={() => auth.signOut()}>Sign out</button>
+      <button className="bg-gray-100 bg-opacity-30 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white" onClick={SignOut}>Sign out</button>
     </section>
   );
 }
@@ -57,6 +66,7 @@ function UsernameForm() {
   const [loading, setLoading] = useState(false);
 
   const { user, username } = useContext(UserContext);
+  const router = useRouter();
   
   // On form submition, set username to firestore
   const onSubmit = async (e) => {
@@ -70,6 +80,7 @@ function UsernameForm() {
     batch.set(usernameDoc, { uid: user.uid });
 
     await batch.commit();
+    router.push('/');
   };
 
   // On username change, check if username is valid
