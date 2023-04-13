@@ -2,7 +2,7 @@ import Auth from "@/components/Auth";
 import { getUserWithUsername } from '../../lib/firebase'; 
 import Group from "@/components/PageComponents/Group";
 import Authorization from "@/components/PageComponents/Authorization";
-import ProfileTab from "@/components/PageComponents/ProfileTab";
+import InfoTab from "@/components/PageComponents/InfoTab";
 
 export async function getServerSideProps(context) {
   const username = context.params.username;
@@ -29,7 +29,7 @@ export default function Profile({ user }) {
   return (
     <section className="ml-4 lg:ml-64 mt-20">
       <h1 className="text-3xl font-bold w-full mb-2">Welcome back, {user.displayName}</h1>
-      <div className="lg:flex">
+      <div className="lg:flex lg:justify-between">
         <div>
           <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
             <h2 className="text-xl">Account Info</h2>
@@ -47,15 +47,15 @@ export default function Profile({ user }) {
           <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
             <h2 className="text-xl">Security Info</h2>
             <hr className="border-solid border-2 mb-2 mt-1"/>
-            <div className="flex flex-col md:flex-row md:justify-around lg:justify-between">
+            <div className="flex flex-col md:flex-row md:justify-around lg:justify-between lg:space-x-4">
               <Group />
               <Authorization />
             </div>
           </article>
         </div>
-        <div>
+        <div className="w-full">
           <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
-            <ProfileTab />
+            <InfoTab />
           </article>
         </div>
       </div>

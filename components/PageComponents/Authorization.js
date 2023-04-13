@@ -63,7 +63,7 @@ function AuthorizationState() {
 export default function Authorization() {
   return (
     <article>
-      <h3>Authorization Status</h3>
+      <h3 className="mt-2 md:mt-0">Authorization Status</h3>
       <hr className="border-solid border-2 mb-2 mt-1 w-56"/>
       <AuthorizationState />
     </article>
