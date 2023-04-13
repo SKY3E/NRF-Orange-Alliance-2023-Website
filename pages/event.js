@@ -15,7 +15,7 @@ export default function event() {
 
   return (
     <section className="ml-4 lg:ml-64 mt-20">
-      <h1>Recent Events</h1>
+      <h1 className="text-3xl font-bold w-full mb-2">Events</h1>
       <ul>
         {events.map((event) => (
           <li key={event.eventKey}>{event.eventName} / {event.startDate}</li>

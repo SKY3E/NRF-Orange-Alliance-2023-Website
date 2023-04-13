@@ -66,7 +66,7 @@ export default function Home() {
           </div>
         </article>
         <article className="rounded bg-blue-900 bg-opacity-50 p-2 mb-2 text-white md:w-1/2">
-          <h2 className="text-xl">Upcoming Events</h2>
+          <h2 className="text-xl">Recent Events</h2>
           <hr className="border-solid border-2 mb-2 mt-1"/>
           {events.map((event) => (
             <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row" key={event.eventKey}>
