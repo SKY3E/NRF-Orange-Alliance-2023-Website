@@ -14,13 +14,13 @@ export default function Navigation() {
   return (
     <section>
       {/* Navbar */}
-      <nav className="fixed z-10 top-0 h-16 w-full bg-blue-900 flex items-center">
+      <nav className="pl-2 fixed z-10 top-0 h-16 w-full bg-blue-900 flex items-center text-white">
         <button
-          className="lg:hidden px-4 text-gray-500 hover:text-white"
+          className="lg:hidden px-2 w-8 h-8 text-blue-900 text-opacity-50 bg-white rounded hover:text-gray-700 flex items-center justify-center"
           onClick={toggleSidebar}
         >
           <svg
-            className="w-6 h-6"
+            className="w-full h-full"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -29,7 +29,7 @@ export default function Navigation() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="3"
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
