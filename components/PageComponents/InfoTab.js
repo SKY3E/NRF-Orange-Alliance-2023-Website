@@ -46,8 +46,8 @@ export default function InfoTab() {
         <h3 className="w-56">Recent Events</h3>
         <hr className="border-solid border-2 mb-2 mt-1 w-56"/>
         {events.map((event) => (
-          <div className="flex flex-col xl:flex-row" key={event.eventKey}>
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 mr-2">{event.eventName}</p>
+          <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row" key={event.eventKey}>
+            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2">{event.eventName}</p>
             <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2">{event.startDate.slice(0, 10)}</p>
           </div>
         ))}
