@@ -37,9 +37,7 @@ export default function Profile({ user }) {
             <div className="flex">
               <img className="rounded-full border-4 border-gray-100 border-opacity-30 h-16 w-16" src={user.photoURL || null} />
               <div className="flex flex-col items-center justify-center ml-4">
-                <p>
-                  <i>@{user.username}</i>
-                </p>
+                <p>@{user.username}</p>
                 <h1>{user.displayName || 'Anonymous User'}</h1>
               </div>
             </div>
