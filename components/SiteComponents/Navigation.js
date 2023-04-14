@@ -44,7 +44,7 @@ export default function Navigation() {
         } lg:block lg:h-full lg:w-60 fixed z-10 top-0 bottom-0 left-0 bg-gray-100 overflow-x-hidden p-2 pt-5 mt-16 border-r-2 border-r-solid`}
       >
         <Auth />
-        <Link href={`/${username}`} legacyBehavior>
+        <Link href={`/profiles/${username}`} legacyBehavior>
           <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
             <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
