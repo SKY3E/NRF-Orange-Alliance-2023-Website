@@ -47,18 +47,17 @@ export default function event() {
             </select>
             <select className="bg-white rounded h-8 mb-2 text-black text-center leading-8" id="month-dropdown" {...register('month', { required: false })} >
               <option>Months</option>
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
               <option>September</option>
               <option>October</option>
               <option>November</option>
               <option>December</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>CMPHOU</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
             </select>
             <button className="bg-green-600 hover:bg-opacity-50 rounded h-8" type="submit">Search</button>
           </form>
