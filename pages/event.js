@@ -83,7 +83,7 @@ export default function event() {
               </div>
             ))
           ) : (
-            <p>No events found.</p>
+            <p className="bg-white rounded text-black text-center leading-8 px-2">No events found.</p>
           )}
         </article>
       </div>

@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <section className='ml-4 mr-4 lg:ml-64 mt-20'>
-      <h1 className="text-5xl font-bold mb-2 mt-32 text-center">The Ocean Scout</h1>
+      <h1 className="text-5xl font-bold mb-2 mt-20 lg:mt-32 text-center">The Ocean Scout</h1>
       <p className="text-center">The Ocean Scout is the ultimate scouting tool for <em>FIRST</em> Tech Challenge</p>
       <p className="mb-6 text-center">Allowing for efficient collection, analysis, and reviewal of data to gain a competitive edge.</p>
       <div className="flex flex-col md:flex-row">
