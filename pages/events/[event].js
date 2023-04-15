@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { getEventWithKey, getTeamsWithEvent, getRankingsWithEvent } from '@/lib/orangealliance';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function EventPage() {
   const [eventRef, setEventRef] = useState(null);
