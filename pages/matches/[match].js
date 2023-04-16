@@ -1,6 +1,3 @@
 export default function MatchPage() {
-
-  return (
-    null
-  );
+  return null;
 }
