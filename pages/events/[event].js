@@ -4,6 +4,7 @@ import {
   getTeamsWithEvent,
   getRankingsWithEvent,
   getMatchesWithEvent,
+  getPointsWithMatches,
 } from "@/lib/orangealliance";
 import { useEffect, useState } from "react";
 
@@ -15,6 +16,7 @@ export default function EventPage() {
   const [showRankings, setShowRankings] = useState(false);
   const [eventMatches, setEventMatches] = useState([]);
   const [showMatches, setShowMatches] = useState(false);
+  const [pointData, setPointData] = useState(null);
   const router = useRouter();
   const { event } = router.query;
 
@@ -47,6 +49,16 @@ export default function EventPage() {
         .catch((error) => console.log(error));
     }
   }, [eventRef]);
+  useEffect(() => {
+    if (eventMatches != null) {
+      try {
+        const pointData = getPointsWithMatches(eventMatches);
+        setPointData(pointData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [eventMatches]);
 
   function changeTeamView() {
     setShowTeams(!showTeams);
@@ -120,7 +132,7 @@ export default function EventPage() {
           {showTeams ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Name / Team Number</h3>
+              <h3 className="text-md">Name / Team Number / Total Points</h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventTeams.length > 0 ? (
                 eventTeams.map((participant) => (
@@ -134,9 +146,12 @@ export default function EventPage() {
                     <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNameShort}
                     </p>
-                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2">
+                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNumber}
                     </p>
+                    {pointData != null ? (
+                      <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2">{pointData[participant.teamKey]}</p>
+                    ) : null}
                   </div>
                 ))
               ) : (
