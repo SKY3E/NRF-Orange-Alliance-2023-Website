@@ -5,6 +5,8 @@ import {
   getRankingsWithEvent,
   getMatchesWithEvent,
   getPointsWithMatches,
+  getParticipantsWithMatches,
+  getAwardsWithEvent,
 } from "@/lib/orangealliance";
 import { useEffect, useState } from "react";
 
@@ -17,6 +19,9 @@ export default function EventPage() {
   const [eventMatches, setEventMatches] = useState([]);
   const [showMatches, setShowMatches] = useState(false);
   const [pointData, setPointData] = useState(null);
+  const [matchParticipants, setMatchParticipants] = useState(null);
+  const [showAwards, setShowAwards] = useState(false);
+  const [eventAwards, setEventAwards] = useState([]);
   const router = useRouter();
   const { event } = router.query;
 
@@ -44,6 +49,13 @@ export default function EventPage() {
   }, [eventRef]);
   useEffect(() => {
     if (eventRef != null) {
+      getAwardsWithEvent(eventRef)
+        .then((awardData) => setEventAwards(awardData))
+        .catch((error) => console.log(error));
+    }
+  }, [eventRef]);
+  useEffect(() => {
+    if (eventRef != null) {
       getMatchesWithEvent(eventRef)
         .then((matchData) => setEventMatches(matchData))
         .catch((error) => console.log(error));
@@ -59,6 +71,16 @@ export default function EventPage() {
       }
     }
   }, [eventMatches]);
+  useEffect(() => {
+    if (eventMatches != null) {
+      try {
+        const matchParticipants = getParticipantsWithMatches(eventMatches);
+        setMatchParticipants(matchParticipants);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [eventMatches]);
 
   function changeTeamView() {
     setShowTeams(!showTeams);
@@ -68,6 +90,9 @@ export default function EventPage() {
   }
   function changeRankingView() {
     setShowRankings(!showRankings);
+  }
+  function changeAwardView() {
+    setShowAwards(!showAwards);
   }
 
   return (
@@ -132,7 +157,7 @@ export default function EventPage() {
           {showTeams ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Name / Team Number / Total Points</h3>
+              <h3 className="text-md">Team Name / Team Number / Total Points (W/ Alliances)</h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventTeams.length > 0 ? (
                 eventTeams.map((participant) => (
@@ -143,15 +168,17 @@ export default function EventPage() {
                     >
                       View
                     </button>
-                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
+                    <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNameShort}
                     </p>
                     <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNumber}
                     </p>
-                    {pointData != null ? (
-                      <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2">{pointData[participant.teamKey]}</p>
-                    ) : null}
+                    {pointData != null && Object.keys(pointData).length != 0 ? (
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">{pointData[participant.teamKey]}</p>
+                    ) : (
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">No Point Data</p>
+                    )}
                   </div>
                 ))
               ) : (
@@ -184,7 +211,7 @@ export default function EventPage() {
           {showMatches ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Name / Team Number</h3>
+              <h3 className="text-md">Match Name / Match Participants</h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventMatches.length > 0 ? (
                 eventMatches.map((match) => (
@@ -195,9 +222,17 @@ export default function EventPage() {
                     >
                       View
                     </button>
-                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 w-36 mr-2">
+                    <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2 w-36 mr-2">
                       {match.matchName}
                     </p>
+                    {matchParticipants != null ? (
+                      <div className="flex">
+                        <p className="bg-red-300 rounded text-black text-center leading-8 px-2 mb-2 mr-2">{matchParticipants[match.matchName + "Red"]}</p>
+                        <p className="bg-blue-200 rounded text-black text-center leading-8 px-2 mb-2">{matchParticipants[match.matchName + "Blue"]}</p>
+                      </div>
+                    ) : (
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">No Data</p>
+                    )}
                   </div>
                 ))
               ) : (
@@ -230,7 +265,7 @@ export default function EventPage() {
           {showRankings ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Name / Team Number / Ranking Points</h3>
+              <h3 className="text-md">Team Name / Team Number / Ranking Points</h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventRankings.length > 0 ? (
                 eventRankings.map((participant) => (
@@ -241,13 +276,13 @@ export default function EventPage() {
                     >
                       View
                     </button>
-                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
+                    <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNameShort}
                     </p>
                     <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2 mr-2">
                       {participant.team.teamNumber}
                     </p>
-                    <p className="bg-white rounded text-black text-center leading-8 px-2 mb-2">
+                    <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">
                       {participant.rankingPoints}
                     </p>
                   </div>
@@ -257,6 +292,31 @@ export default function EventPage() {
                   No rankings found.
                 </p>
               )}
+            </div>
+          ) : null}
+        </article>
+        <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
+          <div className="flex items-center">
+            <h2 className="text-xl">Awards</h2>
+            {showAwards ? (
+              <button
+                onClick={() => changeAwardView()}
+                className="bg-green-600 hover:bg-opacity-50 rounded h-8 px-4 mr-2 ml-auto"
+              >
+                Hide
+              </button>
+            ) : (
+              <button
+                onClick={() => changeAwardView()}
+                className="bg-green-600 hover:bg-opacity-50 rounded h-8 px-4 mr-2 ml-auto"
+              >
+                Show
+              </button>
+            )}
+          </div>
+          {showAwards ? (
+            <div>
+              Show Awards
             </div>
           ) : null}
         </article>
