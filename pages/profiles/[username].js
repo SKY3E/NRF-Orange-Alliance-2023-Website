@@ -1,4 +1,3 @@
-import Auth from "@/components/Auth";
 import { getUserWithUsername } from '../../lib/firebase'; 
 import Group from "@/components/PageComponents/Group";
 import Authorization from "@/components/PageComponents/Authorization";
