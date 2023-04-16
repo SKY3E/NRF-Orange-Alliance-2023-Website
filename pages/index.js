@@ -1,10 +1,12 @@
+// Import next, orange alliance, & react components
 import Link from "next/link";
 import { getRecentEvents } from "../lib/orangealliance";
 import { useState, useEffect } from "react";
 
 export default function Home() {
+  // Define event states
   const [events, setEvents] = useState([]);
-
+  // Fetch event data
   useEffect(() => {
     async function fetchData() {
       const recentEvents = await getRecentEvents();

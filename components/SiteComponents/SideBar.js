@@ -1,9 +1,11 @@
+// Import website, context, & next components
 import Auth from "../Auth";
 import { UserContext } from "../../lib/context";
 import { useContext } from "react";
 import Link from "next/link";
 
 export default function SideBar() {
+  // Retrieve username context
   const { username } = useContext(UserContext);
 
   return (

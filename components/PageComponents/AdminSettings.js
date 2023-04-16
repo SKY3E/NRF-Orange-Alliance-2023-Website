@@ -1,9 +1,11 @@
+// Import context, react, & firebase components
 import { UserContext } from "../../lib/context";
 import { useContext, useState, useEffect } from "react";
-import { getDoc, doc, updateDoc, arrayRemove } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
 import { getUserWithUsername } from "../../lib/firebase";
 
+// Fetch admin state
 async function getAdminWithUsername(username) {
   const docRef = doc(firestore, "admin", "admins");
   try {
@@ -18,7 +20,7 @@ async function getAdminWithUsername(username) {
     console.error("Error getting document:", error);
   }
 }
-
+// Post authorization request
 async function getAuthorizationRequests() {
   const docRef = doc(firestore, "admin", "requests");
   try {
@@ -31,10 +33,11 @@ async function getAuthorizationRequests() {
 }
 
 export default function AdminSettings() {
+  // Retrieve username context & define admine state & user requests
   const { username } = useContext(UserContext);
   const [adminState, setAdminState] = useState(false);
   const [userRequests, setUserRequests] = useState([]);
-
+  // Retrieve data on page load
   useEffect(() => {
     async function fetchData() {
       const isAdmin = await getAdminWithUsername(username);
@@ -45,7 +48,7 @@ export default function AdminSettings() {
 
     fetchData();
   }, []);
-
+  // Set user authorization access
   async function handleAllowAccess(event, user) {
     event.preventDefault();
     const userDoc = await getUserWithUsername(user);

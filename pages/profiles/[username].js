@@ -1,8 +1,10 @@
+// Import firebase and website components 
 import { getUserWithUsername } from "../../lib/firebase";
 import Group from "@/components/PageComponents/Group";
 import Authorization from "@/components/PageComponents/Authorization";
 import InfoTab from "@/components/PageComponents/InfoTab";
 
+// Get username from url and pass user through props
 export async function getServerSideProps(context) {
   const username = context.params.username;
 

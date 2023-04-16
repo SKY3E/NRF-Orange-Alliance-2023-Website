@@ -1,21 +1,21 @@
-// Import helper & firestore functions
+// Import helper & firestore functions, context & react components
 import { getGroupWithUsername } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
-// Use context & react components
 import { UserContext } from "../../lib/context";
 import { useContext, useState, useEffect } from "react";
 
 export default function Group() {
+  // Retrieve user and username context & define group state
   const { user, username } = useContext(UserContext);
   const [group, setGroup] = useState(null);
-
+  // Retrieve group state
   useEffect(() => {
     getGroupWithUsername(username)
       .then((group) => setGroup(group))
       .catch((error) => console.error(error));
   }, [username]);
-
+  // Set group state to firebase to join group
   function handleJoinGroup(teamNumber) {
     const userDocRef = doc(firestore, "users", user.uid);
     updateDoc(userDocRef, { group: teamNumber })
@@ -23,7 +23,7 @@ export default function Group() {
       .then(() => console.log("Document successfully updated!"))
       .catch((error) => console.error("Error updating document: ", error));
   }
-
+  // Set group state to firebase to leave group
   function handleLeaveGroup() {
     const userDocRef = doc(firestore, "users", user.uid);
     updateDoc(userDocRef, { group: null })

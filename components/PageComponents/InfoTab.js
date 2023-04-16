@@ -1,3 +1,4 @@
+// Import orange alliance, react, & website components
 import { getRecentEvents } from "@/lib/orangealliance";
 import { useState, useEffect } from "react";
 import AdminSettings from "./AdminSettings";
@@ -31,9 +32,10 @@ function ShowTabButton({ showTab, onTabButtonClick }) {
 }
 
 export default function InfoTab() {
+  // Define event & sidebar display state
   const [events, setEvents] = useState([]);
   const [showTab, setShowTab] = useState("RecentEvents");
-
+  // Retrieve events on page load
   useEffect(() => {
     async function fetchData() {
       const recentEvents = await getRecentEvents();
@@ -42,7 +44,7 @@ export default function InfoTab() {
 
     fetchData();
   }, []);
-
+  // Change sidebar display state
   function handleTabButtonClick(event) {
     setShowTab(event.target.value);
   }

@@ -1,10 +1,8 @@
+// Import orange alliance, react, react form, & next components, context & authorization components
 import { getRecentEvents, getRegions, getEvents } from "@/lib/orangealliance";
-// Import react form component & react components
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-// Import next utilities
 import { useRouter } from "next/router";
-// Import context & authorization
 import { UserContext } from "../lib/context";
 import { useContext } from "react";
 import { getAuthorizationWithUsername } from "@/lib/firebase";
@@ -15,11 +13,11 @@ export default function event() {
   const { register, handleSubmit, getValues } = useForm();
   const router = useRouter();
   const { user, username } = useContext(UserContext);
-
+  // Define events, region and authorization states
   const [events, setEvents] = useState([]);
   const [regions, setRegions] = useState([]);
   const [authorization, setAuthorization] = useState(false);
-
+  // Fetch data if user is authorized
   useEffect(() => {
     async function fetchData() {
       if (user != null) {
@@ -36,14 +34,14 @@ export default function event() {
 
     fetchData();
   }, [authorization, user]);
-
+  // Fetch event 
   const handleGetEvents = async (data) => {
     const month = getValues("month");
     const region = getValues("region");
     const events = await getEvents(region, month);
     setEvents(events);
   };
-
+  // Route player to selected event
   const handleViewEvent = (event) => {
     const eventKey = event.eventKey;
     router.push(`/events/${eventKey}`);

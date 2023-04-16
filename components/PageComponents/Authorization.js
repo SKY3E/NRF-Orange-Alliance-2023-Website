@@ -1,3 +1,4 @@
+// Import firebase, context, & react components
 import { getAuthorizationWithUsername } from "@/lib/firebase";
 import { UserContext } from "../../lib/context";
 import { useContext, useState, useEffect } from "react";
@@ -5,9 +6,10 @@ import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
 
 function AuthorizationState() {
+  // Retrieve username context & define authorization state
   const { username } = useContext(UserContext);
   const [authorizationState, setAuthorizationState] = useState(null);
-
+  // Retrieve authorization state on page load
   useEffect(() => {
     async function fetchAuthorizationState() {
       try {
@@ -21,7 +23,7 @@ function AuthorizationState() {
 
     fetchAuthorizationState();
   }, [username]);
-
+  // Post authorization request
   function RequestAuthorization() {
     const docRef = doc(firestore, "admin", "requests");
 

@@ -1,12 +1,14 @@
+// Import website, context, react, & next components
 import Auth from "../Auth";
 import { UserContext } from "../../lib/context";
 import { useContext, useState } from "react";
 import Link from "next/link";
 
 export default function Navigation() {
+  // Define sidebar & user states
   const [isOpen, setIsOpen] = useState(false);
   const { username } = useContext(UserContext);
-
+  // Switch sidebar display state
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };

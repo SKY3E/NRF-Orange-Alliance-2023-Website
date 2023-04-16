@@ -1,3 +1,4 @@
+// Import next components, orange alliance functions, & react components
 import { useRouter } from "next/router";
 import {
   getEventWithKey,
@@ -11,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 
 export default function EventPage() {
+  // Define event details, rankings, teams and awards and set their display states
   const [eventRef, setEventRef] = useState(null);
   const [eventTeams, setEventTeams] = useState([]);
   const [showTeams, setShowTeams] = useState(false);
@@ -22,9 +24,11 @@ export default function EventPage() {
   const [matchParticipants, setMatchParticipants] = useState(null);
   const [showAwards, setShowAwards] = useState(false);
   const [eventAwards, setEventAwards] = useState([]);
+  // Define router components
   const router = useRouter();
   const { event } = router.query;
 
+  // Retrieve event data
   useEffect(() => {
     if (event) {
       getEventWithKey(event)
@@ -32,7 +36,6 @@ export default function EventPage() {
         .catch((error) => console.log(error));
     }
   }, [event]);
-
   useEffect(() => {
     if (eventRef != null) {
       getTeamsWithEvent(eventRef)
@@ -81,7 +84,7 @@ export default function EventPage() {
       }
     }
   }, [eventMatches]);
-
+  // Define functions to change display states
   function changeTeamView() {
     setShowTeams(!showTeams);
   }

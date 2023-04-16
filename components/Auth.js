@@ -1,14 +1,10 @@
-// Authentication
+// Import firebase, context, react, debounce, & next components
 import { googleAuthProvider, auth, firestore } from "../lib/firebase";
 import { signInWithPopup } from "firebase/auth";
-// Use context & react components
 import { UserContext } from "../lib/context";
 import { useEffect, useState, useCallback, useContext } from "react";
-// Use debounce
 import debounce from "lodash.debounce";
-// Write and get documents from firestore
 import { doc, getDoc, writeBatch } from "firebase/firestore";
-// Router
 import { useRouter } from "next/router";
 
 // Display sign in and sign out data and export it
