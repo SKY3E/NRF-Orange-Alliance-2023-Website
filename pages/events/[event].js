@@ -160,7 +160,9 @@ export default function EventPage() {
           {showTeams ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Team Name / Team Number / Total Points (W/ Alliances)</h3>
+              <h3 className="text-md">
+                Team Name / Team Number / Total Points (W/ Alliances)
+              </h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventTeams.length > 0 ? (
                 eventTeams.map((participant) => (
@@ -178,9 +180,13 @@ export default function EventPage() {
                       {participant.team.teamNumber}
                     </p>
                     {pointData != null && Object.keys(pointData).length != 0 ? (
-                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">{pointData[participant.teamKey]}</p>
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">
+                        {pointData[participant.teamKey]}
+                      </p>
                     ) : (
-                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">No Point Data</p>
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">
+                        No Point Data
+                      </p>
                     )}
                   </div>
                 ))
@@ -230,11 +236,17 @@ export default function EventPage() {
                     </p>
                     {matchParticipants != null ? (
                       <div className="flex">
-                        <p className="bg-red-300 rounded text-black text-center leading-8 px-2 mb-2 mr-2">{matchParticipants[match.matchName + "Red"]}</p>
-                        <p className="bg-blue-200 rounded text-black text-center leading-8 px-2 mb-2">{matchParticipants[match.matchName + "Blue"]}</p>
+                        <p className="bg-red-300 rounded text-black text-center leading-8 px-2 mb-2 mr-2">
+                          {matchParticipants[match.matchName + "Red"]}
+                        </p>
+                        <p className="bg-blue-200 rounded text-black text-center leading-8 px-2 mb-2">
+                          {matchParticipants[match.matchName + "Blue"]}
+                        </p>
                       </div>
                     ) : (
-                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">No Data</p>
+                      <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2">
+                        No Data
+                      </p>
                     )}
                   </div>
                 ))
@@ -268,7 +280,9 @@ export default function EventPage() {
           {showRankings ? (
             <div>
               <hr className="border-solid border-2 mb-1 mt-1" />
-              <h3 className="text-md">Team Name / Team Number / Ranking Points</h3>
+              <h3 className="text-md">
+                Team Name / Team Number / Ranking Points
+              </h3>
               <hr className="border-solid border-2 mb-2 mt-1" />
               {eventRankings.length > 0 ? (
                 eventRankings.map((participant) => (
@@ -318,9 +332,9 @@ export default function EventPage() {
             )}
           </div>
           {showAwards ? (
-            <div>
-              Show Awards
-            </div>
+            <p className="bg-white rounded text-black text-center leading-8 px-2">
+              No awards found.
+            </p>
           ) : null}
         </article>
       </div>
