@@ -7,7 +7,6 @@ import {
   getMatchesWithEvent,
   getPointsWithMatches,
   getParticipantsWithMatches,
-  getAwardsWithEvent,
 } from "@/lib/orangealliance";
 import { useEffect, useState } from "react";
 
@@ -22,8 +21,6 @@ export default function EventPage() {
   const [showMatches, setShowMatches] = useState(false);
   const [pointData, setPointData] = useState(null);
   const [matchParticipants, setMatchParticipants] = useState(null);
-  const [showAwards, setShowAwards] = useState(false);
-  const [eventAwards, setEventAwards] = useState([]);
   // Define router components
   const router = useRouter();
   const { event } = router.query;
@@ -47,13 +44,6 @@ export default function EventPage() {
     if (eventRef != null) {
       getRankingsWithEvent(eventRef)
         .then((eventRankings) => setEventRankings(eventRankings))
-        .catch((error) => console.log(error));
-    }
-  }, [eventRef]);
-  useEffect(() => {
-    if (eventRef != null) {
-      getAwardsWithEvent(eventRef)
-        .then((awardData) => setEventAwards(awardData))
         .catch((error) => console.log(error));
     }
   }, [eventRef]);
@@ -93,9 +83,6 @@ export default function EventPage() {
   }
   function changeRankingView() {
     setShowRankings(!showRankings);
-  }
-  function changeAwardView() {
-    setShowAwards(!showAwards);
   }
 
   return (
@@ -310,31 +297,6 @@ export default function EventPage() {
                 </p>
               )}
             </div>
-          ) : null}
-        </article>
-        <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
-          <div className="flex items-center">
-            <h2 className="text-xl">Awards</h2>
-            {showAwards ? (
-              <button
-                onClick={() => changeAwardView()}
-                className="bg-green-600 hover:bg-opacity-50 rounded h-8 px-4 mr-2 ml-auto"
-              >
-                Hide
-              </button>
-            ) : (
-              <button
-                onClick={() => changeAwardView()}
-                className="bg-green-600 hover:bg-opacity-50 rounded h-8 px-4 mr-2 ml-auto"
-              >
-                Show
-              </button>
-            )}
-          </div>
-          {showAwards ? (
-            <p className="bg-white rounded text-black text-center leading-8 px-2">
-              No awards found.
-            </p>
           ) : null}
         </article>
       </div>

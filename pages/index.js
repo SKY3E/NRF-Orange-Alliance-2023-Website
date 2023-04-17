@@ -59,10 +59,10 @@ export default function Home() {
               <p>Navigate through events :</p>
               <hr className="w-56 border-solid border-2 mb-2 mt-1" />
               <ul className="pl-7 list-inside list-disc leading-4">
+                <li>Event Details</li>
                 <li>Participating Teams</li>
                 <li>Match Results</li>
                 <li>Rankings</li>
-                <li>Awards</li>
               </ul>
             </div>
             <div className="flex flex-col xl:w-1/2 ml-1 items-center">
