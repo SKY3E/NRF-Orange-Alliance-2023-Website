@@ -73,7 +73,7 @@ export default function AdminSettings() {
       {adminState ? (
         <div>
           <h3 className="w-56">Authorization Requests</h3>
-          <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+          <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
           {userRequests.map((user) => (
             <div className="flex flex-col xl:flex-row" key={user}>
               <form onSubmit={(event) => handleAllowAccess(event, user)}>
@@ -96,7 +96,7 @@ export default function AdminSettings() {
       ) : (
         <div>
           <h3 className="w-56">You are not an admin.</h3>
-          <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+          <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
           <p>
             If you believe this is an error, please contact an administrator.
           </p>

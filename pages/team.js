@@ -44,15 +44,15 @@ export default function team() {
       <section className="ml-4 lg:ml-64 mt-20">
         <h1 className="text-3xl font-bold w-full mb-2">Teams</h1>
         <div className="flex flex-col md:flex-row mr-4 md:mr-0">
-          <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white w-full md:w-3/12 h-36">
+          <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black w-full md:w-3/12 h-36 border-2 border-gray-300">
             <h2 className="text-xl">Filters</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
             <form
               className="flex flex-col"
               onSubmit={handleSubmit(handleGetTeams)}
             >
               <input
-                className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-full pl-2 mb-2 text-black"
+                className="hover:bg-gray-100 hover:bg-opacity-50 rounded h-8 w-full pl-2 mb-2 text-black border-2 border-gray-300"
                 type="number"
                 id="teamNumber"
                 placeholder="Team Number"
@@ -69,12 +69,12 @@ export default function team() {
               </button>
             </form>
           </article>
-          <article className="rounded bg-blue-900 bg-opacity-50 px-2 pt-2 mr-4 mb-2 text-white w-full md:w-9/12 flex-grow">
+          <article className="rounded bg-white bg-opacity-50 px-2 pt-2 mr-4 mb-2 text-black w-full md:w-9/12 flex-grow border-2 border-gray-300">
             <h2 className="text-xl">Teams</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
               <div>
                 <h3 className="mt-2">Team Search Results</h3>
-                <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+                <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
                 {teams.length > 0 ? (
                   teams.map((team) => (
                     <div
@@ -87,10 +87,10 @@ export default function team() {
                       >
                         View
                       </button>
-                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2">
+                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
                         {team.teamKey}
                       </p>
-                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2">
+                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
                         {team.teamNameShort}
                       </p>
                     </div>

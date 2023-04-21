@@ -30,13 +30,13 @@ export default function Home() {
         gain a competitive edge.
       </p>
       <div className="flex flex-col md:flex-row">
-        <article className="rounded bg-blue-900 bg-opacity-50 p-2 md:mr-4 mb-2 text-white md:w-1/2">
+        <article className="rounded bg-white bg-opacity-50 p-2 md:mr-4 mb-2 text-black md:w-1/2 border-2 border-gray-300">
           <h2 className="text-xl">Start Scouting</h2>
-          <hr className="border-solid border-2 mb-2 mt-1" />
+          <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
           <div className="flex flex-col xl:flex-row">
             <div className="flex flex-col xl:w-1/2 mr-1 items-center">
               <Link href={"/event"} legacyBehavior>
-                <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+                <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black border-2 border-gray-300 flex items-center justify-center mt-2">
                   <svg
                     className="h-6 w-6 mr-2"
                     fill="none"
@@ -57,7 +57,7 @@ export default function Home() {
               </Link>
               <h3 className="text-lg text-center mt-1">Explore Events</h3>
               <p>Navigate through events :</p>
-              <hr className="w-56 border-solid border-2 mb-2 mt-1" />
+              <hr className="w-56 border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
               <ul className="pl-7 list-inside list-disc leading-4">
                 <li>Event Details</li>
                 <li>Participating Teams</li>
@@ -67,7 +67,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col xl:w-1/2 ml-1 items-center">
               <Link href={"/team"} legacyBehavior>
-                <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+                <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black border-2 border-gray-300 flex items-center justify-center mt-2">
                   <svg
                     className="h-6 w-6 mr-2"
                     fill="none"
@@ -88,7 +88,7 @@ export default function Home() {
               </Link>
               <h3 className="text-lg text-center mt-1">Explore Teams</h3>
               <p>Navigate through teams :</p>
-              <hr className="w-56 border-solid border-2 mb-2 mt-1" />
+              <hr className="w-56 border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
               <ul className="pl-7 list-inside list-disc leading-4">
                 <li>Team Information</li>
                 <li>Past Events</li>
@@ -99,24 +99,24 @@ export default function Home() {
             </div>
           </div>
         </article>
-        <article className="rounded bg-blue-900 bg-opacity-50 p-2 mb-2 text-white md:w-1/2">
+        <article className="rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 md:w-1/2">
           <h2 className="text-xl">Recent Events</h2>
-          <hr className="border-solid border-2 mb-2 mt-1" />
+          <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
           {events.map((event) => (
             <div
               className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
               key={event.eventKey}
             >
-              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2">
+              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
                 {event.eventName}
               </p>
             </div>
           ))}
         </article>
       </div>
-      <div className="rounded bg-blue-900 bg-opacity-50 p-2 mb-2 text-white flex items-center space-x-2">
+      <div className="rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 flex items-center space-x-2">
         <svg
-          className="h-6 w-6"
+          className="h-6 w-6 text-blue-900 opacity-50"
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"

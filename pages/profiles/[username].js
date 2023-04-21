@@ -33,12 +33,12 @@ export default function Profile({ user }) {
       </h1>
       <div className="lg:flex lg:justify-between">
         <div>
-          <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
+          <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
             <h2 className="text-xl">Account Info</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
             <div className="flex">
               <img
-                className="rounded-full border-4 border-gray-100 border-opacity-30 h-16 w-16"
+                className="rounded-full border-4 border-blue-900 border-opacity-50 h-16 w-16"
                 src={user.photoURL || null}
               />
               <div className="flex flex-col items-center justify-center ml-4">
@@ -47,9 +47,9 @@ export default function Profile({ user }) {
               </div>
             </div>
           </article>
-          <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
+          <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
             <h2 className="text-xl">Security Info</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
             <div className="flex flex-col md:flex-row md:justify-around lg:justify-between lg:space-x-4">
               <Group />
               <Authorization />
@@ -57,7 +57,7 @@ export default function Profile({ user }) {
           </article>
         </div>
         <div className="w-full">
-          <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white">
+          <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
             <InfoTab />
           </article>
         </div>

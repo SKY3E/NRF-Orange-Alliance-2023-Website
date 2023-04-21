@@ -47,7 +47,7 @@ export default function Navigation() {
       >
         <Auth />
         <Link href={`/profiles/${username}`} legacyBehavior>
-          <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+          <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center justify-center mt-2 border-2 border-gray-300">
             <svg
               className="h-6 w-6 mr-2"
               fill="none"
@@ -66,9 +66,9 @@ export default function Navigation() {
             <div>Profile</div>
           </button>
         </Link>
-        <hr className="border-solid border-2 mt-2" />
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-2" />
         <Link href={"/"} legacyBehavior>
-          <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+          <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center justify-center mt-2 border-2 border-gray-300">
             <svg
               className="h-6 w-6 mr-2"
               fill="none"
@@ -88,7 +88,7 @@ export default function Navigation() {
           </button>
         </Link>
         <Link href={"/event"} legacyBehavior>
-          <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+          <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center justify-center mt-2 border-2 border-gray-300">
             <svg
               className="h-6 w-6 mr-2"
               fill="none"
@@ -108,7 +108,7 @@ export default function Navigation() {
           </button>
         </Link>
         <Link href={"/team"} legacyBehavior>
-          <button className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center justify-center mt-2">
+          <button className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center justify-center mt-2 border-2 border-gray-300">
             <svg
               className="h-6 w-6 mr-2"
               fill="none"
@@ -127,7 +127,7 @@ export default function Navigation() {
             <div>Team</div>
           </button>
         </Link>
-        <hr className="border-solid border-2 mt-2" />
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-2" />
       </nav>
     </section>
   );

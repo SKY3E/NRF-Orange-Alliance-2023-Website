@@ -10,7 +10,7 @@ function ShowTabButton({ showTab, onTabButtonClick }) {
         <button
           value="Admin"
           onClick={onTabButtonClick}
-          className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-6 w-36 text-white"
+          className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-6 w-24 text-black border-2 border-gray-300 flex items-center justify-center"
         >
           Admin
         </button>
@@ -22,9 +22,9 @@ function ShowTabButton({ showTab, onTabButtonClick }) {
         <button
           value="RecentEvents"
           onClick={onTabButtonClick}
-          className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-6 w-36 text-white"
+          className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-6 w-24 text-black border-2 border-gray-300 flex items-center justify-center"
         >
-          Recent Events
+          Events
         </button>
       </section>
     );
@@ -59,18 +59,18 @@ export default function InfoTab() {
             onTabButtonClick={handleTabButtonClick}
           />
         </div>
-        <hr className="border-solid border-2 mb-2 mt-1" />
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
         <h3 className="w-56">Recent Events</h3>
-        <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
         {events.map((event) => (
           <div
             className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
             key={event.eventKey}
           >
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2">
+            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
               {event.eventName}
             </p>
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2">
+            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
               {event.startDate.slice(0, 10)}
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function InfoTab() {
             onTabButtonClick={handleTabButtonClick}
           />
         </div>
-        <hr className="border-solid border-2 mb-2 mt-1" />
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
         <AdminSettings />
       </article>
     );

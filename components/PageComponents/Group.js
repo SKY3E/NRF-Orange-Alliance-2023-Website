@@ -50,7 +50,7 @@ function LeaveGroup({ onLeaveGroup }) {
   return (
     <article>
       <h3 className="w-56">Leave Group</h3>
-      <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+      <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
       <form className="flex flex-col items-start" onSubmit={handleLeaveGroup}>
         <button
           type="submit"
@@ -73,7 +73,7 @@ function JoinGroup({ onJoinGroup }) {
   return (
     <article>
       <h3 className="w-56">Join Group</h3>
-      <hr className="border-solid border-2 mb-2 mt-1 w-56" />
+      <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
       <form className="flex flex-col items-start" onSubmit={handleJoinGroup}>
         <input
           className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-56 pl-2 mb-2 text-black"

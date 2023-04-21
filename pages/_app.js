@@ -7,6 +7,7 @@ import NavBar from "../components/SiteComponents/NavBar";
 import Navigation from "@/components/SiteComponents/Navigation";
 // Import Tailwind CSS Framework
 import "tailwindcss/tailwind.css";
+import '../styles/globals.css'
 // Import and create a font variable
 import { Signika_Negative } from "next/font/google";
 const signikaNegative = Signika_Negative({

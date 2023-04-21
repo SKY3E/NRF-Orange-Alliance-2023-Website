@@ -38,7 +38,7 @@ function SignInButton() {
   return (
     <section className="">
       <button
-        className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white flex items-center"
+        className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center border-2 border-gray-300"
         onClick={signInWithGoogle}
       >
         <img className="h-6 w-6 mx-4" src={"/google.png"} />
@@ -58,7 +58,7 @@ function SignOutButton() {
   return (
     <section className="">
       <button
-        className="bg-blue-900 bg-opacity-50 hover:bg-gray-700 hover:bg-opacity-50 rounded h-10 w-56 text-white"
+        className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black border-2 border-gray-300"
         onClick={SignOut}
       >
         Sign out
@@ -148,7 +148,7 @@ function UsernameForm() {
         <form className="" onSubmit={onSubmit}>
           <div>
             <input
-              className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-56 pl-2"
+              className="bg-white hover:bg-gray-100 hover:bg-opacity-50 rounded h-8 w-56 pl-2 border-2 border-gray-300"
               name="username"
               placeholder="username"
               value={formValue}
@@ -176,12 +176,12 @@ function UsernameForm() {
 // Create Username Message which displays username validity
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p className="text-white text-center">Checking...</p>;
+    return <p className="text-center">Checking...</p>;
   } else if (isValid) {
-    return <p className="text-white text-center">{username} is available!</p>;
+    return <p className="text-center">{username} is available!</p>;
   } else if (username && !isValid) {
-    return <p className="text-white text-center">That username is taken!</p>;
+    return <p className="text-center">That username is taken!</p>;
   } else {
-    return <p className="text-white text-center">Waiting...</p>;
+    return <p className="text-center">Waiting...</p>;
   }
 }

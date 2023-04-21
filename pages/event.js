@@ -52,15 +52,15 @@ export default function event() {
       <section className="ml-4 lg:ml-64 mt-20">
         <h1 className="text-3xl font-bold w-full mb-2">Events</h1>
         <div className="flex flex-col md:flex-row mr-4 md:mr-0">
-          <article className="rounded bg-blue-900 bg-opacity-50 p-2 mr-4 mb-2 text-white w-full md:w-3/12 h-44">
+          <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black w-full md:w-3/12 h-44 border-2 border-gray-300">
             <h2 className="text-xl">Filters</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
             <form
               className="flex flex-col"
               onSubmit={handleSubmit(handleGetEvents)}
             >
               <select
-                className="bg-white rounded h-8 mb-2 text-black text-center leading-8"
+                className="bg-white rounded h-8 mb-2 text-black text-center leading-8 border-2 border-gray-300"
                 id="region-dropdown"
                 {...register("region", { required: true })}
               >
@@ -76,7 +76,7 @@ export default function event() {
                 ))}
               </select>
               <select
-                className="bg-white rounded h-8 mb-2 text-black text-center leading-8"
+                className="bg-white rounded h-8 mb-2 text-black text-center leading-8 border-2 border-gray-300"
                 id="month-dropdown"
                 {...register("month", { required: false })}
               >
@@ -101,9 +101,9 @@ export default function event() {
               </button>
             </form>
           </article>
-          <article className="rounded bg-blue-900 bg-opacity-50 px-2 pt-2 mr-4 mb-2 text-white w-full md:w-9/12 flex-grow">
+          <article className="rounded bg-white bg-opacity-50 px-2 pt-2 mr-4 mb-2 text-black w-full md:w-9/12 flex-grow border-2 border-gray-300">
             <h2 className="text-xl">Events</h2>
-            <hr className="border-solid border-2 mb-2 mt-1" />
+            <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
             {events.length > 0 ? (
               events.map((event) => (
                 <div
@@ -116,16 +116,16 @@ export default function event() {
                   >
                     View
                   </button>
-                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2">
+                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
                     {event.eventName}
                   </p>
-                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2">
+                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
                     {event.startDate.slice(0, 10)}
                   </p>
                 </div>
               ))
             ) : (
-              <p className="bg-white rounded text-black text-center leading-8 px-2">
+              <p className="bg-white rounded text-black text-center leading-8 px-2 border-2 border-gray-300">
                 No events found.
               </p>
             )}
