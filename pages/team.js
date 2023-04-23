@@ -96,7 +96,7 @@ export default function team() {
                     </div>
                   ))
                 ) : (
-                  <div>No teams found. Please search for an existing team.</div>
+                  <div className="pb-2">No teams found. Please search for an existing team.</div>
                 )}
               </div>
           </article>
