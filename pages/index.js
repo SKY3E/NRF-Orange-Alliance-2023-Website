@@ -92,9 +92,7 @@ export default function Home() {
               <ul className="pl-7 list-inside list-disc leading-4">
                 <li>Team Information</li>
                 <li>Past Events</li>
-                <li>Match Results</li>
-                <li>Event Rankings</li>
-                <li>Event Awards</li>
+                <li>Team Remarks</li>
               </ul>
             </div>
           </div>
