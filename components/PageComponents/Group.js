@@ -91,7 +91,7 @@ function JoinGroup({ onJoinGroup }) {
       <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
       <form className="flex flex-col items-start" onSubmit={handleJoinGroup}>
         <input
-          className="hover:bg-gray-700 hover:bg-opacity-50 rounded h-8 w-56 pl-2 mb-2 text-black"
+          className="hover:bg-gray-100 hover:bg-opacity-50 rounded h-8 w-56 pl-2 mb-2 text-black border-2 border-gray-300"
           type="number"
           name="teamNumber"
           placeholder="Team Number"

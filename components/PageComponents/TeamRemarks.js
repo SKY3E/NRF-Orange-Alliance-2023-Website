@@ -36,7 +36,7 @@ function ShowTabButton({ showTab, onTabButtonClick }) {
 
 export default function TeamRemarks() {
   const [showTab, setShowTab] = useState("View");
-  const [text, setText] = useState("Team Remarks");
+  const [text, setText] = useState("");
   const { username } = useContext(UserContext);
 
   // Define router components
