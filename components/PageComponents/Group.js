@@ -1,6 +1,6 @@
 // Import helper & firestore functions, context & react components
 import { getGroupWithUsername } from "@/lib/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { firestore } from "../../lib/firebase";
 import { UserContext } from "../../lib/context";
 import { useContext, useState, useEffect } from "react";
@@ -19,16 +19,31 @@ export default function Group() {
   function handleJoinGroup(teamNumber) {
     const userDocRef = doc(firestore, "users", user.uid);
     updateDoc(userDocRef, { group: teamNumber })
-      .then(setGroup(teamNumber))
-      .then(() => console.log("Document successfully updated!"))
-      .catch((error) => console.error("Error updating document: ", error));
+      .then(async () => {
+        setGroup(teamNumber);
+        const groupDocRef = doc(firestore, "groups", teamNumber);
+        await setDoc(groupDocRef, { members: [] }, { merge: false })
+        updateDoc(groupDocRef, {
+          members: arrayUnion(username)
+        })
+          .then(() => console.log("Group document successfully updated!"))
+          .catch((error) => console.error("Error updating group document: ", error));
+      })
+      .catch((error) => console.error("Error updating user document: ", error));
   }
   // Set group state to firebase to leave group
   function handleLeaveGroup() {
     const userDocRef = doc(firestore, "users", user.uid);
     updateDoc(userDocRef, { group: null })
-      .then(setGroup(null))
-      .then(() => console.log("Document successfully updated!"))
+      .then(() => {
+        const groupDocRef = doc(firestore, "groups", group);
+        updateDoc(groupDocRef, {
+          members: arrayRemove(username)
+        })
+          .then(() => console.log("Group document successfully updated!"))
+          .catch((error) => console.error("Error updating group document: ", error));
+        setGroup(null);
+      })
       .catch((error) => console.error("Error updating document: ", error));
   }
 

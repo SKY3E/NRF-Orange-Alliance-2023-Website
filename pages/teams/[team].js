@@ -1,9 +1,7 @@
 // Import next components, orange alliance functions, & react components
 import { useRouter } from "next/router";
-import {
-  getTeamWithKey,
-  getEventsWithTeam,
-} from "@/lib/orangealliance";
+import { getTeamWithKey, getEventsWithTeam } from "@/lib/orangealliance";
+import TeamRemarks from "@/components/PageComponents/TeamRemarks";
 import { useEffect, useState } from "react";
 
 export default function TeamPage() {
@@ -26,10 +24,8 @@ export default function TeamPage() {
     }
   }, [team]);
 
-  function handleViewEvent(event) {
+  function handleViewEvent(event) {}
 
-  }
-  
   return (
     <section className="ml-4 lg:ml-64 mt-20">
       <h1 className="text-3xl font-bold w-full mb-2">Team</h1>
@@ -104,6 +100,9 @@ export default function TeamPage() {
               No events found.
             </p>
           )}
+        </article>
+        <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
+          <TeamRemarks />
         </article>
       </div>
     </section>
