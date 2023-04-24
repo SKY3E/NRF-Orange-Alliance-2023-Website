@@ -2,6 +2,9 @@ import { useState } from "react";
 import { getGroupWithUsername } from "@/lib/firebase";
 import { UserContext } from "../../lib/context";
 import { useContext } from "react";
+import { doc, updateDoc, setDoc, collection } from "firebase/firestore";
+import { firestore } from "../../lib/firebase";
+import { useRouter } from "next/router";
 
 function ShowTabButton({ showTab, onTabButtonClick }) {
   if (showTab === "Edit") {
@@ -36,6 +39,10 @@ export default function TeamRemarks() {
   const [text, setText] = useState("Team Remarks");
   const { username } = useContext(UserContext);
 
+  // Define router components
+  const router = useRouter();
+  const { team } = router.query;
+
   function handleTabButtonClick(event) {
     setShowTab(event.target.value);
   }
@@ -45,7 +52,19 @@ export default function TeamRemarks() {
   async function handleTextAreaSubmit(event) {
     event.preventDefault();
     const group = await getGroupWithUsername(username);
-    
+    if (group == null) {
+      return 
+    } else {
+      const groupDoc = doc(firestore, "groups", group);
+      const groupTeamCollection = collection(groupDoc, group + "-TeamRemarks");
+      const groupTeamRemarksDoc = doc(groupTeamCollection, team);
+      await setDoc(groupTeamRemarksDoc, { teamNumber: team, remarks: "" }, { merge: false })
+      updateDoc(groupTeamRemarksDoc, {
+        remarks: text
+      })
+        .then(() => console.log("Remarks successfully updated!"))
+        .catch((error) => console.error("Error updating group document: ", error));
+    }
   }
 
   if (showTab == "View") {
