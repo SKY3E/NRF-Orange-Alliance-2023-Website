@@ -58,10 +58,11 @@ function SignOutButton() {
   return (
     <section className="">
       <button
-        className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black border-2 border-gray-300"
+        className="bg-white bg-opacity-50 hover:bg-blue-900 hover:bg-opacity-30 rounded h-10 w-56 text-black flex items-center justify-center mt-2 border-2 border-gray-300"
         onClick={SignOut}
       >
-        Sign out
+        <img className="h-6 w-6 mr-2" src={"/google.png"} />
+        <div>Sign out</div>
       </button>
     </section>
   );

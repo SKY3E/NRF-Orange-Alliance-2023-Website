@@ -120,7 +120,7 @@ export default function TeamRemarks() {
           <textarea
             value={text}
             onChange={handleTextAreaChange}
-            className="bg-white rounded text-black px-1 border-2 border-gray-300 resize-none w-full"
+            className="bg-white rounded text-black px-1 border-2 border-gray-300 resize-w-none w-full"
           />
           <button
             type="submit"
