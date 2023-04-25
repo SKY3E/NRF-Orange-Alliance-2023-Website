@@ -2,8 +2,6 @@
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
 // Import website components
-import SideBar from "../components/SiteComponents/SideBar";
-import NavBar from "../components/SiteComponents/NavBar";
 import Navigation from "@/components/SiteComponents/Navigation";
 // Import Tailwind CSS Framework
 import "tailwindcss/tailwind.css";
