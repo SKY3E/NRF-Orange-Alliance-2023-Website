@@ -85,7 +85,7 @@ export default function TeamRemarks() {
       updateDoc(groupTeamRemarksDoc, {
         remarks: text
       })
-        .then(() => console.log("Remarks successfully updated!"))
+        .then(() => setShowTab("View"))
         .catch((error) => console.error("Error updating group document: ", error));
     }
   }
