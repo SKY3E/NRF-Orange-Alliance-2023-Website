@@ -30,7 +30,10 @@ export default function TeamPage() {
     }
   }, [team]);
 
-  function handleViewEvent(event) {}
+  function handleViewEvent(event) {
+    const eventKey = event.eventKey;
+    router.push(`/events/${eventKey}`);
+  };
 
   return (
     <section className="ml-4 lg:ml-64 mt-20">
