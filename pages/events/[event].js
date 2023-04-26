@@ -89,6 +89,11 @@ export default function EventPage() {
   function changeRankingView() {
     setShowRankings(!showRankings);
   }
+  // Define function to reroute user
+  function handleViewTeam(participant) {
+    const teamKey = participant.teamKey;
+    router.push(`/teams/${teamKey}`);
+  }
 
   return (
     <section className="ml-4 lg:ml-64 mt-20">
@@ -163,7 +168,7 @@ export default function EventPage() {
                 eventTeams.map((participant) => (
                   <div className="flex" key={participant.teamKey}>
                     <button
-                      onClick={() => console.log(participant.team.teamNumber)}
+                      onClick={() => handleViewTeam(participant)}
                       className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 mr-2"
                     >
                       View
@@ -283,7 +288,7 @@ export default function EventPage() {
                 eventRankings.map((participant) => (
                   <div className="flex" key={participant.teamKey}>
                     <button
-                      onClick={() => console.log(participant.team.teamNumber)}
+                      onClick={() => handleViewTeam(participant)}
                       className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 mr-2"
                     >
                       View
