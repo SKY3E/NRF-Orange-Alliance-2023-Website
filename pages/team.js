@@ -6,15 +6,17 @@ import { UserContext } from "../lib/context";
 import { useContext } from "react";
 import { getAuthorizationWithUsername } from "@/lib/firebase";
 import Unauthorized from "../components/SiteComponents/Unauthorized";
+import Loading from "../components/Loading";
 
 export default function team() {
   // Set form properties & variables & other variables
   const { register, handleSubmit, getValues, formState, reset } = useForm();
   const router = useRouter();
   const { user, username } = useContext(UserContext);
-  // Define teams, and authorization states
+  // Define teams, authorization,and loading states
   const [teams, setTeams] = useState([]);
   const [authorization, setAuthorization] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // Fetch data if user is authorized
   useEffect(() => {
     async function fetchData() {
@@ -29,8 +31,10 @@ export default function team() {
 
   const handleGetTeams = async (data) => {
     const teamNumber = getValues("teamNumber");
+    setIsLoading(true);
     const teams = await getTeamsWithKey(teamNumber);
     setTeams(teams);
+    setIsLoading(false);
     reset();
   };
   // Route player to selected team
@@ -75,28 +79,32 @@ export default function team() {
               <div>
                 <h3 className="mt-2">Team Search Results</h3>
                 <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
-                {teams.length > 0 ? (
-                  teams.map((team) => (
-                    <div
-                      className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
-                      key={team.teamKey}
-                    >
-                      <button
-                        onClick={() => handleViewTeam(team)}
-                        className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 md:mr-2 lg:mr-0 xl:mr-2"
-                      >
-                        View
-                      </button>
-                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
-                        {team.teamKey}
-                      </p>
-                      <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-                        {team.teamNameShort}
-                      </p>
-                    </div>
-                  ))
+                {isLoading ? (
+                  <Loading />
                 ) : (
-                  <div className="pb-2">No teams found. Please search for an existing team.</div>
+                  teams.length > 0 ? (
+                    teams.map((team) => (
+                      <div
+                        className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
+                        key={team.teamKey}
+                      >
+                        <button
+                          onClick={() => handleViewTeam(team)}
+                          className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 md:mr-2 lg:mr-0 xl:mr-2"
+                        >
+                          View
+                        </button>
+                        <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
+                          {team.teamKey}
+                        </p>
+                        <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                          {team.teamNameShort}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="pb-2">No teams found. Please search for an existing team.</div>
+                  )
                 )}
               </div>
           </article>

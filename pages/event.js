@@ -7,16 +7,18 @@ import { UserContext } from "../lib/context";
 import { useContext } from "react";
 import { getAuthorizationWithUsername } from "@/lib/firebase";
 import Unauthorized from "../components/SiteComponents/Unauthorized";
+import Loading from "../components/Loading";
 
 export default function event() {
   // Set form properties & variables & other variables
   const { register, handleSubmit, getValues } = useForm();
   const router = useRouter();
   const { user, username } = useContext(UserContext);
-  // Define events, region and authorization states
+  // Define events, region, loading and authorization states
   const [events, setEvents] = useState([]);
   const [regions, setRegions] = useState([]);
   const [authorization, setAuthorization] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // Fetch data if user is authorized
   useEffect(() => {
     async function fetchData() {
@@ -25,10 +27,12 @@ export default function event() {
         setAuthorization(authorization);
       }
       if (authorization != false) {
-        const recentEvents = await getRecentEvents();
-        setEvents(recentEvents);
         const regions = await getRegions();
         setRegions(regions);
+        setIsLoading(true);
+        const recentEvents = await getRecentEvents();
+        setEvents(recentEvents);
+        setIsLoading(false);
       }
     }
 
@@ -38,8 +42,10 @@ export default function event() {
   const handleGetEvents = async (data) => {
     const month = getValues("month");
     const region = getValues("region");
+    setIsLoading(true);
     const events = await getEvents(region, month);
     setEvents(events);
+    setIsLoading(false);
   };
   // Route player to selected event
   const handleViewEvent = (event) => {
@@ -104,30 +110,34 @@ export default function event() {
           <article className="rounded bg-white bg-opacity-50 px-2 pt-2 mr-4 mb-2 text-black w-full md:w-9/12 flex-grow border-2 border-gray-300">
             <h2 className="text-xl">Events</h2>
             <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
-            {events.length > 0 ? (
-              events.map((event) => (
-                <div
-                  className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
-                  key={event.eventKey}
-                >
-                  <button
-                    onClick={() => handleViewEvent(event)}
-                    className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 md:mr-2 lg:mr-0 xl:mr-2"
-                  >
-                    View
-                  </button>
-                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
-                    {event.eventName}
-                  </p>
-                  <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-                    {event.startDate.slice(0, 10)}
-                  </p>
-                </div>
-              ))
+            {isLoading ? (
+              <Loading />
             ) : (
-              <p className="bg-white rounded text-black text-center leading-8 px-2 border-2 border-gray-300">
-                No events found.
-              </p>
+              events.length > 0 ? (
+                events.map((event) => (
+                  <div
+                    className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
+                    key={event.eventKey}
+                  >
+                    <button
+                      onClick={() => handleViewEvent(event)}
+                      className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 md:mr-2 lg:mr-0 xl:mr-2"
+                    >
+                      View
+                    </button>
+                    <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
+                      {event.eventName}
+                    </p>
+                    <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                      {event.startDate.slice(0, 10)}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="bg-white rounded text-black text-center leading-8 px-2 border-2 border-gray-300">
+                  No events found.
+                </p>
+              )
             )}
           </article>
         </div>
