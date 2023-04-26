@@ -9,6 +9,7 @@ import {
   getParticipantsWithMatches,
 } from "@/lib/orangealliance";
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 export default function EventPage() {
   // Define event details, rankings, teams and awards and set their display states
@@ -21,6 +22,8 @@ export default function EventPage() {
   const [showMatches, setShowMatches] = useState(false);
   const [pointData, setPointData] = useState(null);
   const [matchParticipants, setMatchParticipants] = useState(null);
+  // Define loading states
+  const [isLoading, setIsLoading] = useState(false);
   // Define router components
   const router = useRouter();
   const { event } = router.query;
@@ -28,8 +31,10 @@ export default function EventPage() {
   // Retrieve event data
   useEffect(() => {
     if (event) {
+      setIsLoading(true);
       getEventWithKey(event)
         .then((eventData) => setEventRef(eventData))
+        .then(() => setIsLoading(false))
         .catch((error) => console.log(error));
     }
   }, [event]);
@@ -92,36 +97,40 @@ export default function EventPage() {
         <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
           <h2 className="text-xl">Details</h2>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
-          {eventRef ? (
-            <div>
-              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-                {eventRef.eventName}
-              </p>
-              <div className="grid grid-cols-2">
-                <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  Start Date : {eventRef.startDate.substring(0, 10)}
-                </p>
-                <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  End Date : {eventRef.endDate.substring(0, 10)}
-                </p>
-                <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  City : {eventRef.city}
-                </p>
-                <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  Region : {eventRef.regionKey}
-                </p>
-                <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  Venue : {eventRef.venue}
-                </p>
-                <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
-                  Event Type : {eventRef.eventTypeKey}
-                </p>
-              </div>
-            </div>
+          {isLoading ? (
+            <Loading />
           ) : (
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-              Loading...
-            </p>
+            eventRef ? (
+              <div>
+                <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                  {eventRef.eventName}
+                </p>
+                <div className="grid grid-cols-2">
+                  <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    Start Date : {eventRef.startDate.substring(0, 10)}
+                  </p>
+                  <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    End Date : {eventRef.endDate.substring(0, 10)}
+                  </p>
+                  <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    City : {eventRef.city}
+                  </p>
+                  <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    Region : {eventRef.regionKey}
+                  </p>
+                  <p className="bg-white rounded mb-2 mr-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    Venue : {eventRef.venue}
+                  </p>
+                  <p className="bg-white rounded mb-2 ml-1 text-black text-center leading-8 px-1 border-2 border-gray-300">
+                    Event Type : {eventRef.eventTypeKey}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                Loading...
+              </p>
+            ) 
           )}
         </article>
         <article className="rounded bg-white bg-opacity-50 p-2 mr-4 mb-2 text-black border-2 border-gray-300">
