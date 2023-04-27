@@ -74,30 +74,36 @@ export default function AdminSettings() {
         <div>
           <h3 className="w-56">Authorization Requests</h3>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
-          {userRequests.map((user) => (
-            <div className="flex flex-col xl:flex-row" key={user}>
-              <form onSubmit={(event) => handleAllowAccess(event, user)}>
-                <p
-                  name="user"
-                  className="bg-white rounded mb-2 text-black text-center leading-8 px-2 mr-2"
-                >
-                  {user}
-                </p>
-                <button
-                  type="submit"
-                  className="bg-green-600 hover:bg-opacity-50 rounded h-8 w-56"
-                >
-                  Allow Access
-                </button>
-              </form>
-            </div>
-          ))}
+          {userRequests.length < 1 ? (
+            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+              No authorization requests found.
+            </p>
+          ) : (
+            userRequests.map((user) => (
+              <div className="flex flex-col xl:flex-row" key={user}>
+                <form onSubmit={(event) => handleAllowAccess(event, user)}>
+                  <p
+                    name="user"
+                    className="bg-white rounded mb-2 text-black text-center leading-8 px-2 mr-2"
+                  >
+                    {user}
+                  </p>
+                  <button
+                    type="submit"
+                    className="bg-green-600 hover:bg-opacity-50 rounded h-8 w-56"
+                  >
+                    Allow Access
+                  </button>
+                </form>
+              </div>
+            ))
+          )}
         </div>
       ) : (
         <div>
           <h3 className="w-56">You are not an admin.</h3>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
-          <p>
+          <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
             If you believe this is an error, please contact an administrator.
           </p>
         </div>

@@ -103,7 +103,7 @@ export default function team() {
                       </div>
                     ))
                   ) : (
-                    <div className="pb-2">No teams found. Please search for an existing team.</div>
+                    <div className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">No teams found. Please search for an existing team.</div>
                   )
                 )}
               </div>

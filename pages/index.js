@@ -100,16 +100,19 @@ export default function Home() {
         <article className="rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 md:w-1/2">
           <h2 className="text-xl">Recent Events</h2>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
-          {events.map((event) => (
-            <div
-              className="flex flex-col xl:flex-row"
-              key={event.eventKey}
-            >
-              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 xl:mr-2 border-2 border-gray-300">
-                {event.eventName}
-              </p>
-            </div>
-          ))}
+          {events.length < 1 ? (
+            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+              No recent events found.
+            </p>
+          ) : (
+            events.map((event) => (
+              <div className="flex flex-col xl:flex-row" key={event.eventKey}>
+                <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 xl:mr-2 border-2 border-gray-300">
+                  {event.eventName}
+                </p>
+              </div>
+            ))
+          )}
         </article>
       </div>
       <div className="rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 flex items-center space-x-2">

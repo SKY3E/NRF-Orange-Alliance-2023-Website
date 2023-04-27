@@ -62,19 +62,25 @@ export default function InfoTab() {
         <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
         <h3 className="w-56">Recent Events</h3>
         <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1 w-56" />
-        {events.map((event) => (
-          <div
-            className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
-            key={event.eventKey}
-          >
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
-              {event.eventName}
-            </p>
-            <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-              {event.startDate.slice(0, 10)}
-            </p>
-          </div>
-        ))}
+        {events.length < 1 ? (
+          <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+            No recent events found.
+          </p>
+        ) : (
+          events.map((event) => (
+            <div
+              className="flex flex-col md:flex-row lg:flex-col xl:flex-row"
+              key={event.eventKey}
+            >
+              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 md:mr-2 lg:mr-0 xl:mr-2 border-2 border-gray-300">
+                {event.eventName}
+              </p>
+              <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                {event.startDate.slice(0, 10)}
+              </p>
+            </div>
+          ))
+        )}
       </article>
     );
   }
