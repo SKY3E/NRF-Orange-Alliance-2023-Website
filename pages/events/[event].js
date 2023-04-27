@@ -89,10 +89,14 @@ export default function EventPage() {
   function changeRankingView() {
     setShowRankings(!showRankings);
   }
-  // Define function to reroute user
+  // Define functions to reroute user
   function handleViewTeam(participant) {
     const teamKey = participant.teamKey;
     router.push(`/teams/${teamKey}`);
+  }
+  function handleViewMatch(match){
+    const matchKey = match.matchKey;
+    router.push(`/matches/${matchKey}`);
   }
 
   return (
@@ -226,7 +230,7 @@ export default function EventPage() {
                 eventMatches.map((match) => (
                   <div className="flex" key={match.matchName}>
                     <button
-                      onClick={() => console.log(match.matchName)}
+                      onClick={() => handleViewMatch(match)}
                       className="bg-green-600 hover:bg-opacity-50 rounded mb-2 h-8 px-4 mr-2"
                     >
                       View
