@@ -34,8 +34,7 @@ export default function MatchPage() {
 
   useEffect(() => {
     console.log(matchRef);
-    console.log(matchParticipants);
-  }, [matchRef, matchParticipants])
+  }, [matchRef])
 
   return (
     <section className="ml-4 lg:ml-64 mt-20">
@@ -51,6 +50,13 @@ export default function MatchPage() {
               <div>
                 <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
                   {matchRef.matchName} - {matchRef.eventKey}
+                </p>
+                <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
+                  {new Date(matchRef.scheduledTime).toLocaleString('en-US', {
+                    dateStyle: 'short',
+                    timeStyle: 'short',
+                    timeZone: 'UTC'
+                  })}
                 </p>
               </div>
             ) : (
