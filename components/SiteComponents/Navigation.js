@@ -43,7 +43,7 @@ export default function Navigation() {
       <nav
         className={`${
           isOpen ? "block" : "hidden"
-        } lg:block lg:h-full lg:w-60 fixed z-10 top-0 bottom-0 left-0 bg-gray-100 overflow-x-hidden p-2 pt-5 mt-16 border-r-2 border-r-solid`}
+        } lg:block lg:h-full lg:w-60 fixed z-10 top-0 bottom-0 left-0 bg-gray-100 overflow-x-hidden p-2 pt-0 mt-16 border-r-2 border-r-solid`}
       >
         <Auth />
         <Link href={`/profiles/${username}`} legacyBehavior>
