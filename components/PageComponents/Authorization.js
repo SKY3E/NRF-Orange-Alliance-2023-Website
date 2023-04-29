@@ -46,14 +46,14 @@ function AuthorizationState() {
 
   if (authorizationState === true) {
     return (
-      <p className="bg-white bg-opacity-50 rounded h-8 w-56 mb-2 text-black text-center leading-8 border-2 border-gray-300">
+      <p className="bg-white bg-opacity-50 rounded h-8 w-56 mb-2 text-black text-center leading-7 border-2 border-gray-300">
         Status : <span className="text-green-600 text-opacity-70">Allowed</span>
       </p>
     );
   } else if (authorizationState === false) {
     return (
       <div className="flex flex-col">
-        <p className="bg-white bg-opacity-50 rounded h-8 w-56 mb-2 text-black text-center leading-8 border-2 border-gray-300">
+        <p className="bg-white bg-opacity-50 rounded h-8 w-56 mb-2 text-black text-center leading-7 border-2 border-gray-300">
           Status :{" "}
           <span className="text-red-600 text-opacity-70">Disallowed</span>
         </p>
