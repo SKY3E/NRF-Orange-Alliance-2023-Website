@@ -41,9 +41,8 @@ export default function Navigation() {
 
       {/* Sidebar */}
       <nav
-        className={`${
-          isOpen ? "block" : "hidden"
-        } lg:block lg:h-full lg:w-60 fixed z-10 top-0 bottom-0 left-0 bg-gray-100 overflow-x-hidden p-2 pt-0 mt-16 border-r-2 border-r-solid`}
+        className={`${isOpen ? "block" : "hidden"
+          } lg:block lg:h-full lg:w-60 fixed z-10 top-0 bottom-0 left-0 bg-gray-100 overflow-x-hidden p-2 pt-0 mt-16 border-r-2 border-r-solid`}
       >
         <Auth />
         <Link href={`/profiles/${username}`} legacyBehavior>
@@ -168,6 +167,13 @@ export default function Navigation() {
             <div>Legal</div>
           </button>
         </Link>
+        <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-2" />
+        <label className="bg-white bg-opacity-50 rounded h-10 w-56 text-black flex items-center pl-2 mt-2 border-2 border-gray-300">
+          <svg className="h-6 w-6 mr-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+          <p>Created by <a className="underline" target="_blank" href="https://github.com/SKY3E">SKYZE</a></p>
+        </label>
       </nav>
     </section>
   );
