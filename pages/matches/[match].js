@@ -24,20 +24,25 @@ export default function MatchPage() {
       if (user != null) {
         const authorization = await getAuthorizationWithUsername(username);
         setAuthorization(authorization);
-      }
-      if (match && authorization != false) {
-        setIsLoading(true);
-        getMatchWithKey(match)
-          .then((matchData) => setMatchRef(matchData))
-          .then(() => setIsLoading(false))
-          .catch((error) => console.log(error));
+        if (match && authorization != false) {
+          setIsLoading(true);
+          try {
+            const matchData = await getMatchWithKey(match);
+            setMatchRef(matchData);
+          } catch (error) {
+            console.log(error);
+          } finally {
+            setIsLoading(false);
+          }
+        }
       }
     }
-
+  
     fetchData();
   }, [match])
   useEffect(() => {
-    if (match != null) {
+    if (matchRef != null) {
+      console.log(matchRef);
       try {
         const matchParticipants = getParticipantsWithMatch(matchRef);
         setMatchParticipants(matchParticipants);
@@ -73,7 +78,7 @@ export default function MatchPage() {
                 </div>
               ) : (
                 <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-                  Loading...
+                  Match details not found.
                 </p>
               ) 
             )}
@@ -127,7 +132,7 @@ export default function MatchPage() {
                 </div>
               ) : (
                 <p className="bg-white rounded mb-2 text-black text-center leading-8 px-2 border-2 border-gray-300">
-                  Loading...
+                  Match scores not found.
                 </p>
               ) 
             )}
@@ -146,7 +151,7 @@ export default function MatchPage() {
               </div>
             ) : (
               <p className="bg-gray-200 rounded text-black text-center leading-8 px-2 mb-2 border-2 border-gray-300">
-                No Data
+                Match participants not found.
               </p>
             )}
           </article>
