@@ -22,7 +22,6 @@ export default function Group() {
       .then(async () => {
         setGroup(teamNumber);
         const groupDocRef = doc(firestore, "groups", teamNumber);
-        await setDoc(groupDocRef, { members: [] }, { merge: false })
         updateDoc(groupDocRef, {
           members: arrayUnion(username)
         })
