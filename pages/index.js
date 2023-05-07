@@ -30,7 +30,7 @@ export default function Home() {
         gain a competitive edge.
       </p>
       <div className="flex flex-col md:flex-row">
-        <article className="rounded bg-white bg-opacity-50 p-2 md:mr-4 mb-2 text-black md:w-1/2 border-2 border-gray-300">
+        <article className="rounded bg-white bg-opacity-50 p-2 md:mr-4 mb-2 text-black xl:h-64 md:w-1/2 border-2 border-gray-300">
           <h2 className="text-xl">Start Scouting</h2>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
           <div className="flex flex-col xl:flex-row">
@@ -97,7 +97,7 @@ export default function Home() {
             </div>
           </div>
         </article>
-        <article className="rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 md:w-1/2">
+        <article className="md:flex-grow rounded bg-white bg-opacity-50 p-2 mb-2 text-black border-2 border-gray-300 md:w-1/2">
           <h2 className="text-xl">Recent Events</h2>
           <hr className="border-solid border-blue-900 border-opacity-50 border-2 mb-2 mt-1" />
           {events.length < 1 ? (
