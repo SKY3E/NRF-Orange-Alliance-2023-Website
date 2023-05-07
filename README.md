@@ -4,10 +4,11 @@ The Ocean Scout is the ultimate scouting tool for FIRST Tech Challenge allowing 
 
 ## Usage
 
-Navigate to [The Ocean Scout Website](theoceanscout-sky3e.vercel.app/)
+Navigate to [The Ocean Scout Website](theoceanscout-sky3e.vercel.app/) to start collaborating with your team & scouting.
 
 - Events : Obtain data including but not limited to Event Details, Participating Teams, Match Results, & Rankings
 - Teams : Obtain data including but not limited to Team Information, Past Events, & Team Remarks
+- Matches : Obtain data including but not limited to Match Details (Time, Title, Id), Score Details, & Participants
 
 ## Installation
 
